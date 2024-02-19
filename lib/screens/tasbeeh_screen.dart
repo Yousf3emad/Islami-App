@@ -12,9 +12,9 @@ class TasbeehScreen extends StatefulWidget {
 class _TasbeehScreenState extends State<TasbeehScreen> {
   List<String> tasbeehat = [
     "سبحان الله",
-    "الحمد الله",
+    "الحمد لله",
     "لا اله الا الله",
-    "الله اكير",
+    "الله اكبر",
   ];
   int tasbeeh_index = 0;
   int counter =0;

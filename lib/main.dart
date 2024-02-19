@@ -18,16 +18,19 @@ class MyApp extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FlutterSplashScreen(
-        duration: const Duration(seconds: 2),
-        nextScreen: const RootScreen(),
-        splashScreenBody: SizedBox(
-            width: size.width,
-            child: Image.asset(AssetsManager.splash,fit: BoxFit.cover,
-            ),
-        ),
-      ),
-
+      // home: FlutterSplashScreen(
+      //   useImmersiveMode: true,
+      //   duration: const Duration(seconds: 2),
+      //   nextScreen: const RootScreen(),
+      //   splashScreenBody: SizedBox(
+      //     width: size.width,
+      //     child: Image.asset(
+      //       AssetsManager.splash,
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      // ),
+      initialRoute: RootScreen.routeName,
       routes: {
         HadessContent.routeName: (context) => const HadessContent(),
         RootScreen.routeName: (context) => const RootScreen(),

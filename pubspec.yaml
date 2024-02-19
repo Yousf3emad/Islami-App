@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   #Splash Screen
   another_flutter_splash_screen: ^1.2.0
+  flutter_native_splash: ^2.3.13
 
 
 dev_dependencies:
