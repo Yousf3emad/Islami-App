@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 
 Widget defaultText({
   required String txt,
+  double? ltrSpacing,
   TextDirection txtDirection = TextDirection.ltr,
   Color? color,
 }) => Text(textDirection: txtDirection,
       txt,
       style: TextStyle(
+        letterSpacing: ltrSpacing,
         fontFamily: "Elmessiri",
         fontWeight: FontWeight.bold,
         fontSize: 22,
