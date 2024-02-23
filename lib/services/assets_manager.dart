@@ -20,6 +20,7 @@ class AssetsManager {
   static String basmala = "$lightModePath/basmala.png";
   static String splash = "$lightModePath/splash.png";
   static String alAqsa = "$imagesPath/al_aqsa.gif";
+  static String theme = "$imagesPath/theme.png";
 
 
 

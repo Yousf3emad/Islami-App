@@ -13,9 +13,9 @@ class RadioScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AssetsManager.radio_02),
+            Image.asset(AssetsManager.radio_02,height: size.height*.3,),
             SizedBox(
-              height: size.width * 0.1,
+              height: size.width * 0.05,
             ),
             const Text(
               "اذاعه القران الكريم",
@@ -46,6 +46,7 @@ class RadioScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 12,),
           ],
         ),
       ),

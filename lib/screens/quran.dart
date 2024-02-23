@@ -13,41 +13,51 @@ class QuranScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Image.asset(AssetsManager.quran_02),
+        Image.asset(
+          AssetsManager.quran_02,
+          height: size.height * .3,
+        ),
         const Divider(
-          color: AppColors.bottomNavBarColor,
+          color: AppColors.primaryColor,
           thickness: 2,
         ),
-        defaultText(txt: "اسم السورة"),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6.0),
+          child: defaultText(txt: "اسم السورة", color: AppColors.primaryColor),
+        ),
         const Divider(
-          color: AppColors.bottomNavBarColor,
+          color: AppColors.primaryColor,
           thickness: 2,
         ),
-        const SizedBox(height: 12.0,),
+        const SizedBox(
+          height: 12.0,
+        ),
         Flexible(
           child: SizedBox(
             width: size.width * 0.8,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(
                     context,
                     SuraContent.routeName,
                     arguments: SuraModel(
-                        suraIndex: index,
-                        suraName: AppStrings.suraName[index]),
+                        suraIndex: index, suraName: AppStrings.suraName[index]),
                   );
                 },
                 child: Container(
                   height: 50.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
-                    border: Border.all(color: AppColors.bottomNavBarColor,width: 2.0),
+                    border:
+                        Border.all(color: AppColors.primaryColor, width: 2.0),
                     color: Colors.transparent,
                   ),
                   child: Center(
-                    child: defaultText(txt: AppStrings.suraName[index],color: AppColors.bottomNavBarColor),
+                    child: defaultText(
+                        txt: AppStrings.suraName[index],
+                        color: AppColors.primaryColor),
                   ),
                 ),
               ),

@@ -7,18 +7,17 @@ import 'package:islamic_app/screens/tasbeeh_screen.dart';
 import 'package:islamic_app/services/assets_manager.dart';
 import 'package:islamic_app/widgets/app_name_widget.dart';
 import 'package:islamic_app/widgets/bottom_navbar_item.dart';
+import 'package:islamic_app/widgets/default_text.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
-  static const String routeName ="/RootScreen";
+  static const String routeName = "/RootScreen";
 
   @override
   State<RootScreen> createState() => _RootScreenState();
-
 }
 
 class _RootScreenState extends State<RootScreen> {
-
   late final PageController _pageController;
 
   int currentScreen = 0;
@@ -47,6 +46,66 @@ class _RootScreenState extends State<RootScreen> {
           width: size.width,
         ),
         Scaffold(
+          drawer: Drawer(
+            backgroundColor: AppColors.primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 120,
+                    child: DrawerHeader(
+                      child: Center(child: appName()),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  defaultText(
+                    txt: "Mode",
+                    ltrSpacing: 1.5,
+                  ),
+                  const SizedBox(height: 12.0,),
+                  SwitchListTile(
+                    value: false,
+                    onChanged: (bool value) {},
+                    title: defaultText(
+                        txt: "Light Mode",
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w300),
+                    secondary: Image.asset(
+                      AssetsManager.theme,height: 35.0,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                    child: Divider(
+                      thickness: 1.0,
+                    ),
+                  ),
+                  defaultText(
+                    txt: "Language",
+                    ltrSpacing: 1.5,
+                  ),
+                  const SizedBox(height: 12.0,),
+                  ListTile(
+                    onTap: (){},
+                    title: defaultText(
+                        txt: "English",
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w300),
+                    trailing: const Icon(Icons.language),
+                  ),
+                ],
+              ),
+            ),
+          ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: appName(),
@@ -68,7 +127,7 @@ class _RootScreenState extends State<RootScreen> {
               });
             },
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.bottomNavBarColor,
+            backgroundColor: AppColors.primaryColor,
             currentIndex: currentScreen,
             items: [
               bottomNavBarItem(icon: AssetsManager.radio, label: "الراديو"),
@@ -82,64 +141,3 @@ class _RootScreenState extends State<RootScreen> {
     );
   }
 }
-
-/*
-* bottomNavigationBar: NavigationBar(
-            selectedIndex: currentScreen,
-            backgroundColor: AppColors.bottomNavBarColor,
-            indicatorColor: Colors.transparent,
-            onDestinationSelected: (index) {
-              setState(() {
-                currentScreen = index;
-                _pageController.jumpToPage(currentScreen);
-              });
-            },
-            destinations: [
-              NavigationDestination(icon: Image.asset(AssetsManager.radio), label: "ee"),
-              NavigationDestination(icon: Image.asset(AssetsManager.sebha), label: "ee"),
-              NavigationDestination(icon: Image.asset(AssetsManager.ahadess), label: "ee"),
-              NavigationDestination(icon: Image.asset(AssetsManager.ahadess), label: "ee"),
-
-            ],
-          ),
-* */
-
-
-/*
-* Container(
-          height: size.height,
-          width: size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-* */
-
-// Scaffold(
-// extendBodyBehindAppBar: true,
-// appBar: AppBar(
-// backgroundColor: Colors.transparent,
-// centerTitle: true,
-// title: appName(),
-// ),
-// body: Container(
-// decoration: BoxDecoration(
-// image: DecorationImage(
-// fit: BoxFit.cover,
-// image: AssetImage("assets/images/background.png"),
-// ),
-// ),
-// child: Column(
-// crossAxisAlignment: CrossAxisAlignment.stretch,
-// children: [
-// appName(),
-// appName(),
-// appName(),
-// appName(),
-// ],
-// ),
-// ),
-// );

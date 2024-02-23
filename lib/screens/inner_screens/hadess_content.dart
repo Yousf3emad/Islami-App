@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:islamic_app/consts/app_colors.dart';
 import 'package:islamic_app/widgets/default_text.dart';
 
@@ -39,7 +36,7 @@ class _HadessContentState extends State<HadessContent> {
           body: hadethModel.content.isEmpty
               ? const Center(
             child: CircularProgressIndicator(
-              color: AppColors.bottomNavBarColor,
+              color: AppColors.primaryColor,
             ),
           )
               : Center(
@@ -60,7 +57,7 @@ class _HadessContentState extends State<HadessContent> {
                   ),
                   const Divider(
                     height: 24,
-                    color: AppColors.bottomNavBarColor,
+                    color: AppColors.primaryColor,
                     thickness: 2,
                     indent: 30,
                     endIndent: 30,
