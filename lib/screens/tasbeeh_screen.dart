@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/consts/app_colors.dart';
 import 'package:islamic_app/services/assets_manager.dart';
+import 'package:islamic_app/widgets/default_text.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme_provider.dart';
 
 class TasbeehScreen extends StatefulWidget {
   const TasbeehScreen({super.key});
@@ -17,43 +21,45 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
     "الله اكبر",
   ];
   int tasbeeh_index = 0;
-  int counter =0;
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Center(
         child: SingleChildScrollView(
-          child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Stack(
             alignment: AlignmentDirectional.bottomCenter,
             children: [
               Container(height: 320.0),
               PositionedDirectional(
-                  end: 130.0,
-                  top: 7.0,
+                  end: size.width*.34,//130.0,
+                  top: size.width*0.015,//7.0,
                   child: Image.asset(
-                    AssetsManager.headOfSebha,
+                    themeProvider.isDark? AssetsManager.darkHeadOfSebha :  AssetsManager.headOfSebha,
                   )),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   setState(() {
-                    if(counter< 30-1){
+                    if (counter < 30 - 1) {
                       counter++;
-                    }else{
-                      if(tasbeeh_index>=0 && tasbeeh_index<tasbeehat.length-1){
+                    } else {
+                      if (tasbeeh_index >= 0 &&
+                          tasbeeh_index < tasbeehat.length - 1) {
                         tasbeeh_index++;
                         counter = 0;
-                      }else{
+                      } else {
                         counter = 0;
-                        tasbeeh_index=0;
+                        tasbeeh_index = 0;
                       }
                     }
                   });
                 },
                 child: Image.asset(
-                  AssetsManager.bodyOfSebha,
+                  themeProvider.isDark? AssetsManager.darkBodyOfSebha : AssetsManager.bodyOfSebha,
                 ),
               ),
             ],
@@ -61,14 +67,7 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
           const SizedBox(
             height: 50.0,
           ),
-          const Text(
-            "عدد التسبيحات",
-            style: TextStyle(
-              fontFamily: "Elmessiri",
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
-          ),
+          DefaultText(txt: "عدد التسبيحات",),
           const SizedBox(
             height: 30.0,
           ),
@@ -77,11 +76,13 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
             height: 50.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
-              color: AppColors.tasbeehCounter,
+              color: themeProvider.isDark? AppColors.primaryDarkColor : AppColors.tasbeehCounter,
             ),
             child: Center(
-                child: Text("${counter}",
-              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
+                child: Text(
+              "$counter",
+              style:
+              TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0,color: themeProvider.isDark? Colors.white:null),
             )),
           ),
           const SizedBox(
@@ -92,12 +93,12 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
             height: 50.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
-              color: const Color(0xFFCC7344),
+              color: themeProvider.isDark? AppColors.gold : const Color(0xFFCC7344),
             ),
             child: Center(
               child: Text(
                 tasbeehat[tasbeeh_index],
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: "Elmessiri",
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
@@ -105,8 +106,8 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
               ),
             ),
           ),
-                ],
-              ),
-        ));
+        ],
+      ),
+    ));
   }
 }

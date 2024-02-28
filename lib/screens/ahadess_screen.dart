@@ -31,7 +31,7 @@ class AhadessScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 6.0),
-              child: defaultText(
+              child: DefaultText(
                 txt: "الاحاديث",color: AppColors.primaryColor
               ),
             ),
@@ -63,7 +63,7 @@ class AhadessScreen extends StatelessWidget {
                         color: Colors.transparent,
                       ),
                       child: Center(
-                        child: defaultText(
+                        child: DefaultText(
                           txt: "الحديث رقم (${index+1})",
                               //"${ahadethProvider.ahadethList[index].title}(${index + 1})",
                           txtDirection: TextDirection.rtl,

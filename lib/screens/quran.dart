@@ -23,7 +23,7 @@ class QuranScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: defaultText(txt: "اسم السورة", color: AppColors.primaryColor),
+          child: DefaultText(txt: "اسم السورة", color: AppColors.primaryColor),
         ),
         const Divider(
           color: AppColors.primaryColor,
@@ -55,7 +55,7 @@ class QuranScreen extends StatelessWidget {
                     color: Colors.transparent,
                   ),
                   child: Center(
-                    child: defaultText(
+                    child: DefaultText(
                         txt: AppStrings.suraName[index],
                         color: AppColors.primaryColor),
                   ),

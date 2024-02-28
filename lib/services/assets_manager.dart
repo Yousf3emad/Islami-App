@@ -2,6 +2,7 @@ class AssetsManager {
 
   static String imagesPath = "assets/images";
   static String lightModePath = "assets/images/light_mode";
+  static String darkModePath = "assets/images/dark_mode";
 
   // Light images
   static String background = "$lightModePath/background.png";
@@ -22,6 +23,8 @@ class AssetsManager {
   static String alAqsa = "$imagesPath/al_aqsa.gif";
   static String theme = "$imagesPath/theme.png";
 
-
-
+  // Dark Images
+  static String darkBackground = "$darkModePath/darkBackground.png";
+  static String darkBodyOfSebha = "$darkModePath/darkBodyOfSebha.png";
+  static String darkHeadOfSebha = "$darkModePath/darkHeadOfSebha.png";
 }

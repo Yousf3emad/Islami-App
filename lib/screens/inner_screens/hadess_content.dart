@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/consts/app_colors.dart';
 import 'package:islamic_app/widgets/default_text.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/hadeth_mode.dart';
+import '../../providers/theme_provider.dart';
 import '../../services/assets_manager.dart';
 import '../../widgets/app_name_widget.dart';
 
@@ -18,10 +20,11 @@ class _HadessContentState extends State<HadessContent> {
   @override
   Widget build(BuildContext context) {
     var hadethModel = ModalRoute.of(context)!.settings.arguments as HadethModel;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Image.asset(
+        Image.asset(themeProvider.isDark? AssetsManager.darkBackground :
           AssetsManager.background,
           fit: BoxFit.fill,
           width: size.width,
@@ -29,7 +32,7 @@ class _HadessContentState extends State<HadessContent> {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            title: appName(),
+            title: appName(context),
             centerTitle: true,
             backgroundColor: Colors.transparent,
           ),
@@ -44,20 +47,21 @@ class _HadessContentState extends State<HadessContent> {
               padding: const EdgeInsets.all(20.0),
               height: size.height-150,
               width: size.width-50,
-              color: AppColors.hadessContent,
+              color:themeProvider.isDark? AppColors.primaryDarkColor : AppColors.hadessAndSuraContentBg,
               child: Column(
                 children: [
                   Text(
                     hadethModel.title,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontFamily: "Elmessiri",
                       fontWeight: FontWeight.bold,
                       fontSize: 22,
+                      color: themeProvider.isDark? Colors.white : null,
                     ),
                   ),
-                  const Divider(
+                   Divider(
                     height: 24,
-                    color: AppColors.primaryColor,
+                    color: themeProvider.isDark? Colors.white :AppColors.primaryColor,
                     thickness: 2,
                     indent: 30,
                     endIndent: 30,
@@ -68,7 +72,7 @@ class _HadessContentState extends State<HadessContent> {
                       const SizedBox(
                         height: 6,
                       ),
-                      itemBuilder: (context, index) => defaultText(
+                      itemBuilder: (context, index) => DefaultText(
                           txt: hadethModel.content[index],
                           txtDirection: TextDirection.rtl,
                       ),

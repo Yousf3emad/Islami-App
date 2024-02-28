@@ -4,13 +4,14 @@ import 'package:islamic_app/providers/sura_content_provider.dart';
 import 'package:islamic_app/widgets/default_text.dart';
 import 'package:provider/provider.dart';
 import '../../consts/app_colors.dart';
+import '../../providers/theme_provider.dart';
 import '../../services/assets_manager.dart';
 import '../../widgets/app_name_widget.dart';
 
 class SuraContent extends StatelessWidget {
-  const SuraContent({super.key});
-  static String routeName = "SuraContent";
+   const SuraContent({super.key});
 
+  static String routeName = "SuraContent";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,6 +19,7 @@ class SuraContent extends StatelessWidget {
     return ChangeNotifierProvider<SuraContentProvider>(
       create: (context) => SuraContentProvider(),
       builder: (context, child) {
+        ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
         SuraContentProvider suraContentProvider =
         Provider.of<SuraContentProvider>(context);
         if (suraContentProvider.suraContent.isEmpty) {
@@ -25,7 +27,7 @@ class SuraContent extends StatelessWidget {
         }
         return Stack(
           children: [
-            Image.asset(
+            Image.asset( themeProvider.isDark? AssetsManager.darkBackground :
               AssetsManager.background,
               fit: BoxFit.fill,
               width: size.width,
@@ -33,9 +35,7 @@ class SuraContent extends StatelessWidget {
             Scaffold(
               backgroundColor: Colors.transparent,
               appBar: AppBar(
-                title: appName(),
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
+                title: appName(context),
               ),
               body: suraContentProvider.suraContent.isEmpty
                   ? const Center(
@@ -48,15 +48,15 @@ class SuraContent extends StatelessWidget {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height - 150,
                         width: size.width - 50,
-                        color: AppColors.hadessContent,
+                        color:  themeProvider.isDark? AppColors.primaryDarkColor : AppColors.hadessAndSuraContentBg,
                         child: Column(
                           children: [
-                            defaultText(
+                            DefaultText(
                               txt: suraModel.suraName,
                             ),
-                            const Divider(
+                             Divider(
                               height: 24,
-                              color: AppColors.primaryColor,
+                              color: themeProvider.isDark? Colors.white : AppColors.primaryColor,
                               thickness: 2,
                               indent: 30,
                               endIndent: 30,
@@ -68,11 +68,11 @@ class SuraContent extends StatelessWidget {
                                     suraModel.suraIndex == 0
                                         ? const Visibility(
                                             visible: false, child: Text(""))
-                                        : defaultText(txt: suraModel.basmala),
+                                        : DefaultText(txt: suraModel.basmala),
                                     const SizedBox(
                                       height: 6,
                                     ),
-                                    defaultText(
+                                    DefaultText(
                                         txt: suraContentProvider.suraContent,
                                         txtDirection: TextDirection.rtl,
                                         ltrSpacing: 0.5),
@@ -88,7 +88,7 @@ class SuraContent extends StatelessWidget {
                                     //       txtDirection: TextDirection.rtl),
                                     //   itemCount: verses.length,
                                     // ),
-                                    defaultText(txt: suraModel.tasdek),
+                                    DefaultText(txt: suraModel.tasdek),
                                   ],
                                 ),
                               ),
