@@ -1,0 +1,15 @@
+{
+  "appName" : "اسلامي",
+  "alRadio" : "الراديو",
+  "alTasbeeh" : "التسبيح",
+  "alAhadeth" : "الاحاديث",
+  "alQuran" : "القران",
+  "suraName" : "اسم السوره",
+  "tasbeehNumber" : "Tasbeeh Number",
+  "mode" : "الاضاءه",
+  "lightMode" : "فاتح",
+  "darkMode" : "داكن",
+  "language" : "اللغه",
+  "english" : "انجليزي",
+  "arabic" : "عربي"
+}

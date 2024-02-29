@@ -4,6 +4,7 @@ import 'package:islamic_app/screens/inner_screens/hadess_content.dart';
 import 'package:islamic_app/screens/inner_screens/sura_content.dart';
 import 'package:provider/provider.dart';
 import 'root_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,11 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
+          ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(themeProvider.languageCode),
             theme: ThemeData(
                 appBarTheme: AppBarTheme(
                   centerTitle: true,

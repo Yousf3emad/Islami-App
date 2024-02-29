@@ -10,6 +10,7 @@ import 'package:islamic_app/widgets/app_name_widget.dart';
 import 'package:islamic_app/widgets/bottom_navbar_item.dart';
 import 'package:islamic_app/widgets/default_text.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -69,7 +70,7 @@ class _RootScreenState extends State<RootScreen> {
                     height: 12.0,
                   ),
                   DefaultText(
-                    txt: "Mode",
+                    txt: AppLocalizations.of(context)!.mode,
                     ltrSpacing: 1.5,
                   ),
                   const SizedBox(height: 12.0,),
@@ -79,7 +80,7 @@ class _RootScreenState extends State<RootScreen> {
                       themeProvider.setIsDark(value);
                     },
                     title: DefaultText(
-                        txt: "Light Mode",
+                        txt: themeProvider.isDark? AppLocalizations.of(context)!.darkMode : AppLocalizations.of(context)!.lightMode,
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w300),
@@ -94,18 +95,24 @@ class _RootScreenState extends State<RootScreen> {
                     ),
                   ),
                   DefaultText(
-                    txt: "Language",
+                    txt: AppLocalizations.of(context)!.language,
                     ltrSpacing: 1.5,
                   ),
                   const SizedBox(height: 12.0,),
                   ListTile(
-                    onTap: (){},
+                    onTap: (){
+                      if(themeProvider.languageCode == "en"){
+                        themeProvider.changeLang("ar");
+                      }else{
+                        themeProvider.changeLang("en");
+                      }
+                    },
                     title: DefaultText(
-                        txt: "English",
+                        txt: themeProvider.languageCode=="en"? AppLocalizations.of(context)!.english : AppLocalizations.of(context)!.arabic,
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w300),
-                    trailing: const Icon(Icons.language),
+                    trailing: Icon(Icons.language,color: themeProvider.isDark? Colors.white : Colors.black,),
                   ),
                 ],
               ),
@@ -135,16 +142,16 @@ class _RootScreenState extends State<RootScreen> {
             items: [
               bottomNavBarItem(
                   context: context,
-                  icon: AssetsManager.radio, label: "الراديو"),
+                  icon: AssetsManager.radio, label: AppLocalizations.of(context)!.alRadio),
               bottomNavBarItem(
                   context: context,
-                  icon: AssetsManager.sebha, label: "التسبيح"),
+                  icon: AssetsManager.sebha, label: AppLocalizations.of(context)!.alTasbeeh),
               bottomNavBarItem(
                   context: context,
-                  icon: AssetsManager.ahadess, label: "الاحاديث"),
+                  icon: AssetsManager.ahadess, label: AppLocalizations.of(context)!.alAhadeth),
               bottomNavBarItem(
                   context: context,
-                  icon: AssetsManager.quran, label: "القران"),
+                  icon: AssetsManager.quran, label: AppLocalizations.of(context)!.alQuran),
             ],
           ),
         ),

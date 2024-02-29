@@ -5,6 +5,7 @@ import 'package:islamic_app/models/sura_model.dart';
 import 'package:islamic_app/screens/inner_screens/sura_content.dart';
 import 'package:islamic_app/services/assets_manager.dart';
 import 'package:islamic_app/widgets/default_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuranScreen extends StatelessWidget {
   const QuranScreen({super.key});
@@ -23,7 +24,7 @@ class QuranScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: DefaultText(txt: "اسم السورة", color: AppColors.primaryColor),
+          child: DefaultText(txt: AppLocalizations.of(context)!.suraName, color: AppColors.primaryColor),
         ),
         const Divider(
           color: AppColors.primaryColor,

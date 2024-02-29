@@ -5,6 +5,7 @@ import 'package:islamic_app/screens/inner_screens/hadess_content.dart';
 import 'package:islamic_app/services/assets_manager.dart';
 import 'package:islamic_app/widgets/default_text.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AhadessScreen extends StatelessWidget {
   const AhadessScreen({super.key});
@@ -32,7 +33,7 @@ class AhadessScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 6.0),
               child: DefaultText(
-                txt: "الاحاديث",color: AppColors.primaryColor
+                txt: AppLocalizations.of(context)!.alAhadeth,color: AppColors.primaryColor
               ),
             ),
             const Divider(

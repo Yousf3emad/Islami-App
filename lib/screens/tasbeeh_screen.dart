@@ -36,8 +36,8 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
             children: [
               Container(height: 320.0),
               PositionedDirectional(
-                  end: size.width*.34,//130.0,
-                  top: size.width*0.015,//7.0,
+                  end: 135.0,//size.width*.34,
+                  top: 7.0,//size.width*0.015,
                   child: Image.asset(
                     themeProvider.isDark? AssetsManager.darkHeadOfSebha :  AssetsManager.headOfSebha,
                   )),
